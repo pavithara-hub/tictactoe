@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Press+Start+2P&family=Rock+Salt&family=Sigmar+One&display=swap" rel="stylesheet">
+<title>Tic-Tac-toe</title>
+<style>
+.one{
+    background: rgb(10,9,9);
+    background: linear-gradient(90deg, rgba(10,9,9,1) 0%, rgba(121,22,9,1) 51%, rgba(55,30,117,1) 100%);
+   height: 1000px;
+    width:100%;
+    margin-top:-80px;
+    }
+#p1{
+    font-style: bold;
+    text-align:center;
+    color:whitesmoke;
+    font-size:70px;
+    font-family: 'Monoton', cursive;
+    background: -webkit-linear-gradient(#ef650a,#f40a23);
+    background-clip:text ;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.two,.three,.four{
+    color:white;
+    
+   height:550px;
+   margin-top:100px; 
+   margin-left:500px;
+   width:500px;
+   background-color:#3b0f09;
+}
+.form1,.form2,.form3{
+    margin-top:40px;
+}
+input[type=text],input[type=password]{
+    width: 90%;
+    color:#eb3406;
+    padding: 12px 20px;
+  margin-left:23px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color:transparent;
+  font-size: 20px;
+}
+input[type=submit]{
+    color:white;
+    font-family: 'Rock Salt', cursive;
+    width: 50%;
+    padding: 12px 20px;
+    margin-left:120px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-sizing: border-box;
+  background: rgb(239,101,10);
+background: linear-gradient(90deg, rgba(239,101,10,1) 0%, rgba(235,52,6,1) 51%, rgba(244,10,35,1) 100%);
+}
+input[type=submit]:hover {
+   background:#d70808;
+}
+</style>
+</head>
+<body>
+    
+        
+  <div class="one" id="onediv">
+    
+      <p id="p1">TIC-TAC-TOE</p>
+      <div class="two" id="logindiv"> 
+      <form class="form1">
+
+          <label style="color:#e08514;padding-left:160px;font-size:30px;font-family: 'Rock Salt', cursive;"><b>Username</b></label>
+          <input type="text" name="username" id="loginu" ><br><br>
+
+          <label style="color:#e08514;padding-left:160px;font-size:30px;font-family: 'Rock Salt', cursive;"><b>Password</b></label>
+          <input type="password" name="psw" id="loginp"><br><br><br><br>
+
+          <input type="submit" value="Login" onclick="logingame()"><br><br><br>
+          <label style="margin-left:150px;color:#e08514 ;font-size:17px;font-family: 'Rock Salt', cursive;">If not registered↓↓</label> <br>
+
+          <input type="submit" value="Register" onclick="registeruser()">
+      </form>
+    </div>
+    
+<div class="three" id="registerdiv"> 
+    <form class="form2" onsubmit="registered()">
+
+        <label style="color:#e08514 ;padding-left:160px;font-size:30px;font-family: 'Rock Salt', cursive;"><b>Username</b></label>
+        <input type="text"  id="regu" name="username" required><br><br>
+
+        <label style="color:#e08514 ;padding-left:160px;font-size:30px;font-family: 'Rock Salt', cursive;"><b>Password</b></label>
+        <input type="password"  id="regp" name="psw" required><br><br><br><br>
+
+    
+        <input type="submit" value="Register">
+    </form>
+</div>
+<div class="four" id="playerdiv">
+    <form class="form3" onclick="play()">
+
+        <label style="color:#e08514 ;padding-left:160px;font-size:30px;font-family: 'Rock Salt', cursive;"><b>Player 1</b></label>
+        <input type="text" name="play1"><br><br>
+
+        <label style="color:#e08514 ;padding-left:160px;font-size:30px;font-family: 'Rock Salt', cursive;"><b>Player 2</b></label>
+        <input type="text" name="play2"><br><br><br><br>
+
+        <input type="submit" value="Play Now">
+
+
+    </form>
+</div>
+  </div>  
+  <script>
+    let home=document.getElementById("onediv");
+    let login=document.getElementById("logindiv");
+    let register=document.getElementById("registerdiv");
+    let play=document.getElementById("playerdiv");
+    
+    register.remove();
+    play.remove();
+
+    function loginpage(){
+        home.append(login);
+                register.remove();
+                play.remove();
+
+    }
+    
+    function registeruser(){
+        login.remove();
+        play.remove();
+        home.appendChild(register);
+    }
+
+    var userdata=[{uname:"pavi",pass:"pavi"}];
+    function logingame()
+    {
+        var uname=document.getElementById("loginu").value;
+        var pass=document.getElementById("loginp").value;
+        var obj={"uname":uname,"pass":pass};
+
+        var flag=false;
+        for(let i=0;i<userdata.length;i++)
+        {
+            if(userdata[i].uname==uname && userdata[i].pass==pass)
+                flag=true;
+            }
+            if(flag)
+            {
+                login.remove();
+                register.remove();
+                home.appendChild(play);
+                
+            }
+            else
+            {
+            alert("Incorrect ");
+            }
+
+    }
+    function registered()
+    {
+        var uname=document.getElementById("regu").value;
+        var pass=document.getElementById("regp").value;
+        var obj1={"uname":uname,"pass":pass};
+        userdata.push(obj1);
+       loginpage();
+       
+    }
+    
+</script>
+</body>
+</html>
